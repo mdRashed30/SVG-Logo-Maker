@@ -1,11 +1,12 @@
 const inquirer = require('inquirer');
-const fs = require('fs');
 const { Triangle, Square, Circle } = require("./lib/shapes");
-
+const { writeLogoToFile } = require('./lib/logo');
 //shapes go here
 const shapeClasses = {
-
-}
+    Triangle: Triangle,
+    Circle: Circle,
+    Square: Square
+};
 
 //inquirer prompt goes here
 inquirer
@@ -15,8 +16,9 @@ inquirer
             message: "Enter in up to 3 letters for the logo...",
             name: 'text',
             //validation regex function goes here to make sure only 3 char are entered
-            validate: function (value) {
-            }
+            // validate: function (value) {
+            //     var pass =  value.match
+            // }
         },
         {
             type: "input",
@@ -24,7 +26,7 @@ inquirer
             name: "textColor"
         },
         {
-            type: "input",
+            type: "list",
             message: "What shape would you like the text over?",
             name: "shape",
             choices: [Triangle, Circle, Square]
@@ -37,9 +39,10 @@ inquirer
     ])
     .then(answers => {
         //this is where the answer goes
-
+        const shape = new shapeClasses[answers.shape]();
+        shape.setColor(answers.shapeColor);
         //this is the function that will write to the file system
-        makeLogoIntoFile(answers.text, answers.textColor, shape)
+        writeLogoToFile(answers.text, answers.textColor, shape)
     })
     .catch(err => {
         if (err.isTtyError) {
