@@ -15,10 +15,12 @@ inquirer
             type: "input",
             message: "Enter in up to 3 letters for the logo...",
             name: 'text',
-            //validation regex function goes here to make sure only 3 char are entered
-            // validate: function (value) {
-            //     var pass =  value.match
-            // }
+            validate: function (input) {
+                if (input.length > 3) {
+                    return "Logo text must be only three characters.";
+                }
+                return true;
+            }
         },
         {
             type: "input",
