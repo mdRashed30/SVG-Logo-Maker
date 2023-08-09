@@ -62,7 +62,7 @@ Steps to run Application :
 
 ## Video:
 
-[SVG Logo Maker]()
+[SVG Logo Maker](https://drive.google.com/file/d/1tlZwCQCdOH5AtYbUi_0YQvZpR57pGylq/view)
 
 <hr>
 
